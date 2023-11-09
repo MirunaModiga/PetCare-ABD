@@ -82,7 +82,7 @@
 
             <Rectangle HorizontalAlignment="Left" Height="400" VerticalAlignment="Center" Width="450">
                 <Rectangle.Fill>
-                    <ImageBrush ImageSource="D:\Desktop\CALC_3\Aplicatii_baze\testnou\testnou\images\pet.png" Stretch="Uniform"/>
+                    <ImageBrush ImageSource="\images\pet.png" Stretch="Uniform"/>
                 </Rectangle.Fill>
             </Rectangle>
             <TextBlock HorizontalAlignment="Left" Height="207" Margin="512,202,0,0" TextWrapping="Wrap" Text=" Whether you're a devoted pet owner or a dedicated veterinarian, our application is designed to make pet care simpler and more efficient." VerticalAlignment="Top" Width="357" FontFamily="Sitka Display Semibold" FontSize="23" FontStretch="SemiCondensed" TextAlignment="Center"/>
@@ -99,7 +99,7 @@
                     </TransformGroup>
                 </Rectangle.RenderTransform>
                 <Rectangle.Fill>
-                    <ImageBrush ImageSource="/pngegg.png" Stretch="Uniform"/>
+                    <ImageBrush ImageSource="/images/pngegg.png" Stretch="Uniform"/>
                 </Rectangle.Fill>
             </Rectangle>
 

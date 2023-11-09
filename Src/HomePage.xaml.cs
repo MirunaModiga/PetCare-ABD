@@ -49,11 +49,13 @@ namespace testnou
         private void Tg_Btn_Unchecked(object sender, RoutedEventArgs e)
         {
             img_bg.Opacity = 1;
+            registerPet.Opacity = 1;
         }
 
         private void Tg_Btn_Checked(object sender, RoutedEventArgs e)
         {
             img_bg.Opacity = 0.3;
+            registerPet.Opacity = 0.3;
         }
 
         private void BG_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -64,6 +66,27 @@ namespace testnou
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void registerPet_Click(object sender, RoutedEventArgs e)
+        {
+            RegisterPet pet = new RegisterPet();
+            pet.Show();
+            this.Close();
+        }
+
+        private void SignOut_Click(object sender, RoutedEventArgs e)
+        {
+            StartUp start=new StartUp();
+            start.Show();
+            this.Close();
+        }
+
+        private void AboutUs_Clicked(object sender, RoutedEventArgs e)
+        {
+            AboutUs info=new AboutUs();
+            info.Show();
+            this.Close();
         }
     }
 }

@@ -30,6 +30,9 @@ namespace testnou
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
+            string username = txtUsername.Text;
+            string pass = txtPassword.Password;
+
             SqlConnection sqlCon = new SqlConnection(@"Data Source=DESKTOP-KS3LE58; Initial Catalog=PetCare; Integrated Security=True;");
             try
             {
@@ -47,13 +50,44 @@ namespace testnou
                 cmd.ExecuteNonQuery();
                 int count = Convert.ToInt32(cmd.ExecuteScalar());
 
-                txtUsername.Text = "";
-                txtPassword.Password = "";
+                string userType = "";
                 if (count == 1)
                 {
-                    HomePage home = new HomePage();
-                    home.Show();
-                    this.Close();
+                    query = String.Format("SELECT _usertype FROM Users WHERE _Username='{0}' AND _Password='{1}'", txtUsername.Text, txtPassword.Password);            
+                    cmd = new SqlCommand(query, sqlCon);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        userType = reader["_usertype"].ToString();
+                        reader.Close();
+                    }
+
+                    Users user = new Users
+                    {
+                        username = username,
+                        parola = pass
+                    };
+
+                    txtUsername.Text = "";
+                    txtPassword.Password = "";
+
+                    if (userType == "Veterinary")
+                    {
+                        HomePageVet home = new HomePageVet();
+                        home.Show();
+                        this.Close();
+                    }
+                    else if (userType == "Owner")
+                    {
+                        HomePage home = new HomePage();
+                        home.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Usertype invalid from database.");
+                    }
                 }
                 else
                 {
@@ -109,10 +143,11 @@ namespace testnou
                     sqlCon.Open();
                 }
 
-                string query = "INSERT INTO Users VALUES(@_Username,@_Password,@_Email,@_usertype)";
+                string query = "INSERT INTO Users VALUES(@_FullName,@_Username,@_Password,@_Email,@_usertype)";
 
                 SqlCommand cmd = new SqlCommand(query, sqlCon);
 
+                cmd.Parameters.AddWithValue("@_FullName",txtFullNameSignin.Text);
                 cmd.Parameters.AddWithValue("@_Username", txtUsernameSignin.Text);
                 cmd.Parameters.AddWithValue("@_Password", txtPasswordSignin.Password);
                 cmd.Parameters.AddWithValue("@_Email", txtEmailSignin.Text);
@@ -129,6 +164,13 @@ namespace testnou
                 cmd.ExecuteNonQuery();
                 //sqlCon.Close();
 
+                /*Users user = new Users
+                {
+                    username = username,
+                    parola = pass
+                };*/
+
+                txtFullNameSignin.Text = "";
                 txtUsernameSignin.Text = "";
                 txtPasswordSignin.Password = "";
                 txtEmailSignin.Text = "";
