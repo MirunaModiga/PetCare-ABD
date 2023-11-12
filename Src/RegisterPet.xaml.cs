@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Globalization;
 
 namespace testnou
 {
@@ -22,12 +23,16 @@ namespace testnou
     /// </summary>
     public partial class RegisterPet : Window
     {
+        string user;
+        int userID = 0;
         public string petType { get; set; }
         public string photoPath { get; set; }
 
-        public RegisterPet()
+        public RegisterPet(string user)
         {
             InitializeComponent();
+            this.user = user;
+            userID = this.find_id();
         }
 
         private void CloseBtnPet_Click(object sender, RoutedEventArgs e)
@@ -89,7 +94,7 @@ namespace testnou
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            HomePage home = new HomePage();
+            HomePage home = new HomePage(this.user);
             home.Show();
             this.Close();
         }
@@ -132,17 +137,7 @@ namespace testnou
             string color=petname3.Text;
             string sex;
             string pet_type=this.petType;
-            int userID=0;
 
-            /* if (DogButton.IsPressed == true) { pet_type = "Dog"; }
-             else if (CatButton.IsPressed == true) { pet_type = "Cat"; }
-             else if (BirdButton.IsPressed == true) { pet_type = "Bird"; }
-             else if (OtherButton.IsPressed == true) { pet_type = "Other"; }
-             else
-             {
-                 MessageBox.Show("Please choose a pet type!");
-                 return;
-             }*/
             if (pet_type == null)
             {
                 MessageBox.Show("Please choose a pet type!");
@@ -178,8 +173,33 @@ namespace testnou
                 return;
             }
 
+            var context = new baza_PetCareDataContext();
 
-            SqlConnection sqlCon = new SqlConnection(@"Server=DESKTOP-KS3LE58;Database=PetCare;Integrated Security=True");
+            var new_pet = new Pet
+            {
+                _petName = pet_name,
+                _sex = sex,
+                _color = color,
+                _breed = breed,
+                _birthdate = DateTime.ParseExact(birth, "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                _petType = pet_type,
+                _OwnerID = this.userID,
+                _photo = photoPath
+            };
+
+            context.Pets.InsertOnSubmit(new_pet);
+            context.SubmitChanges();
+
+            MessageBox.Show("Pet registration successful!");
+
+            petname.Text = "";
+            petname1.Text = "";
+            petname2.Text = "";
+            petname3.Text = "";
+            Female.IsChecked = false;
+            Male.IsChecked = false;
+
+            /*SqlConnection sqlCon = new SqlConnection(@"Server=DESKTOP-KS3LE58;Database=PetCare;Integrated Security=True");
             try
             {
                 if (sqlCon.State == ConnectionState.Closed)
@@ -188,7 +208,7 @@ namespace testnou
                 }
 
 
-                string query_id = String.Format("SELECT IDUser FROM Users WHERE _Username='{0}' AND _Password='{1}'", user , password);
+              /*  string query_id = String.Format("SELECT IDUser FROM Users WHERE _Username='{0}' AND _Password='{1}'", user , password);
                 SqlCommand cmd = new SqlCommand(query_id, sqlCon);
 
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -197,10 +217,10 @@ namespace testnou
                     userID =reader["IDUser"];
                     reader.Close();
                 }
-
+              
                 string query = "INSERT INTO Users VALUES(@_petName,@_sex,@_breed,@_color,@_birthdate,@_petType,@_photo)";
 
-                cmd = new SqlCommand(query, sqlCon);
+                SqlCommand cmd = new SqlCommand(query, sqlCon);
 
                 cmd.Parameters.AddWithValue("@_petName", pet_name);
                 cmd.Parameters.AddWithValue("@_sex", sex);
@@ -235,7 +255,7 @@ namespace testnou
             finally
             {
                 sqlCon.Close();
-            }
+            }*/
         }
 
         private void DogButton_Click(object sender, RoutedEventArgs e)
@@ -256,6 +276,13 @@ namespace testnou
         private void OtherButton_Click(object sender, RoutedEventArgs e)
         {
             this.petType = "Other";
+        }
+
+        private int find_id()
+        {
+            var context = new baza_PetCareDataContext();
+            int us = (from u in context.Users where u._Username == user select new { u.IDUser }).SingleOrDefault().IDUser;
+            return us;
         }
     }
 }

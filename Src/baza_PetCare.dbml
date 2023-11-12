@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="PetCare" Class="baza_PetCareDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-KS3LE58;Initial Catalog=PetCare;Integrated Security=True" SettingsObjectName="testnou.Properties.Settings" SettingsPropertyName="PetCareConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Appointments" Member="Appointments">
+    <Type Name="Appointment">
+      <Column Name="IDAppointment" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="[_PetID]" Member="_PetID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[_DoctorID]" Member="_DoctorID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[_date]" Member="_date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[_purpose]" Member="_purpose" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[_status]" Member="_status" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="User_Appointment" Member="User" ThisKey="_DoctorID" OtherKey="IDUser" Type="User" IsForeignKey="true" />
+      <Association Name="Pet_Appointment" Member="Pet" ThisKey="_PetID" OtherKey="IDPet" Type="Pet" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="IDUser" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="[_FullName]" Member="_FullName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[_Username]" Member="_Username" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="[_Password]" Member="_Password" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="[_Email]" Member="_Email" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="[_usertype]" Member="_usertype" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="User_Appointment" Member="Appointments" ThisKey="IDUser" OtherKey="_DoctorID" Type="Appointment" />
+      <Association Name="User_Health_Record" Member="Health_Records" ThisKey="IDUser" OtherKey="_DoctorID" Type="Health_Record" />
+      <Association Name="User_Message" Member="Messages" ThisKey="IDUser" OtherKey="_ReceiverID" Type="Message" />
+      <Association Name="User_Message1" Member="Messages1" ThisKey="IDUser" OtherKey="_SenderID" Type="Message" />
+      <Association Name="User_Pet" Member="Pets" ThisKey="IDUser" OtherKey="_OwnerID" Type="Pet" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Health Records]" Member="Health_Records">
+    <Type Name="Health_Record">
+      <Column Name="IDRecord" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="[_PetID]" Member="_PetID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[_DoctorID]" Member="_DoctorID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[_date]" Member="_date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[_diagnosis]" Member="_diagnosis" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="[_treatment]" Member="_treatment" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="User_Health_Record" Member="User" ThisKey="_DoctorID" OtherKey="IDUser" Type="User" IsForeignKey="true" />
+      <Association Name="Pet_Health_Record" Member="Pet" ThisKey="_PetID" OtherKey="IDPet" Type="Pet" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Medication" Member="Medications">
+    <Type Name="Medication">
+      <Column Name="IDMedication" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="[_PetID]" Member="_PetID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[_medicationName]" Member="_medicationName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[_dosage]" Member="_dosage" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[_frequency]" Member="_frequency" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[_start]" Member="_start" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[_end]" Member="_end" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[_notes]" Member="_notes" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="Pet_Medication" Member="Pet" ThisKey="_PetID" OtherKey="IDPet" Type="Pet" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Messages" Member="Messages">
+    <Type Name="Message">
+      <Column Name="IDMessage" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="[_SenderID]" Member="_SenderID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[_ReceiverID]" Member="_ReceiverID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[_messageContent]" Member="_messageContent" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="[_timestamp]" Member="_timestamp" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="User_Message" Member="User" ThisKey="_ReceiverID" OtherKey="IDUser" Type="User" IsForeignKey="true" />
+      <Association Name="User_Message1" Member="User1" ThisKey="_SenderID" OtherKey="IDUser" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Pets" Member="Pets">
+    <Type Name="Pet">
+      <Column Name="IDPet" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="[_OwnerID]" Member="_OwnerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[_petName]" Member="_petName" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="[_sex]" Member="_sex" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="[_breed]" Member="_breed" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="[_color]" Member="_color" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="[_birthdate]" Member="_birthdate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[_petType]" Member="_petType" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="[_photo]" Member="_photo" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="Pet_Appointment" Member="Appointments" ThisKey="IDPet" OtherKey="_PetID" Type="Appointment" />
+      <Association Name="Pet_Health_Record" Member="Health_Records" ThisKey="IDPet" OtherKey="_PetID" Type="Health_Record" />
+      <Association Name="Pet_Medication" Member="Medications" ThisKey="IDPet" OtherKey="_PetID" Type="Medication" />
+      <Association Name="User_Pet" Member="User" ThisKey="_OwnerID" OtherKey="IDUser" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

@@ -19,9 +19,11 @@ namespace testnou
     /// </summary>
     public partial class AboutUs : Window
     {
-        public AboutUs()
+        string user;
+        public AboutUs(string user)
         {
             InitializeComponent();
+            this.user = user;
         }
 
         private void CloseBtnPet_Click(object sender, RoutedEventArgs e)
@@ -31,7 +33,7 @@ namespace testnou
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            HomePage home = new HomePage();
+            HomePage home = new HomePage(this.user);
             home.Show();
             this.Close();
         }

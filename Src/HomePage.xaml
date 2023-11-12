@@ -430,7 +430,7 @@
                             <!--// Contacts //-->
 
                             <ListViewItem HorizontalAlignment="Left"
-                                      Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
+                                      Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter" MouseDoubleClick="ListView_MyPets_MouseDoubleClick"
                                       >
 
                                 <!--// Tooltip //-->

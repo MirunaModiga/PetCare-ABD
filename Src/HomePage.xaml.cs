@@ -19,9 +19,11 @@ namespace testnou
     /// </summary>
     public partial class HomePage : Window
     {
-        public HomePage()
+        string user;
+        public HomePage(string user)
         {
             InitializeComponent();
+            this.user = user;
         }
 
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
@@ -70,7 +72,7 @@ namespace testnou
 
         private void registerPet_Click(object sender, RoutedEventArgs e)
         {
-            RegisterPet pet = new RegisterPet();
+            RegisterPet pet = new RegisterPet(this.user);
             pet.Show();
             this.Close();
         }
@@ -84,8 +86,15 @@ namespace testnou
 
         private void AboutUs_Clicked(object sender, RoutedEventArgs e)
         {
-            AboutUs info=new AboutUs();
+            AboutUs info=new AboutUs(this.user);
             info.Show();
+            this.Close();
+        }
+
+        private void ListView_MyPets_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            MyPetsList mypets=new MyPetsList(this.user);
+            mypets.Show();
             this.Close();
         }
     }
