@@ -84,7 +84,8 @@ namespace testnou
 
         private string Make_description(Pet pets)
         {
-            return "-> "+pets._petType + "\n-> " + pets._breed+"\n-> " + pets._birthdate.ToString("dd/MM/yyyy") +"\n-> " +pets._sex+"\n-> " +pets._color;
+            string age = CalculateYourAge(pets._birthdate);
+            return "-> "+pets._petType + ", " + pets._sex + "\n-> Breed: " + pets._breed+"\n-> Age: " + age +"\n-> Color: " +pets._color;
         }
 
         private Image setIcon(Pet pets)
@@ -109,6 +110,28 @@ namespace testnou
             {
                 return Resources.other_icon;
             }
+        }
+
+        string CalculateYourAge(DateTime Birthdate)
+        {
+            DateTime Now = DateTime.Now;
+            int Years = new DateTime(DateTime.Now.Subtract(Birthdate).Ticks).Year - 1;
+            DateTime PastYearDate = Birthdate.AddYears(Years);
+            int Months = 0;
+            for (int i = 1; i <= 12; i++)
+            {
+                if (PastYearDate.AddMonths(i) == Now)
+                {
+                    Months = i;
+                    break;
+                }
+                else if (PastYearDate.AddMonths(i) >= Now)
+                {
+                    Months = i - 1;
+                    break;
+                }
+            }
+            return String.Format("Age: {0} Year(s) {1} Month(s)",Years, Months);
         }
 
     }

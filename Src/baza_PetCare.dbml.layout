@@ -1,97 +1,97 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 14.75" name="baza_PetCare">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 14.625" name="baza_PetCare">
   <DataContextMoniker Name="/baza_PetCareDataContext" />
   <nestedChildShapes>
-    <classShape Id="79fc57e0-6059-41cf-978c-c041fef13aa1" absoluteBounds="6.25, 9.125, 2, 1.9631982421874987">
+    <classShape Id="fc263357-cead-41fc-9b48-e5904c3a7259" absoluteBounds="5.875, 8.875, 2, 1.9631982421874987">
       <DataClassMoniker Name="/baza_PetCareDataContext/Appointment" />
       <nestedChildShapes>
-        <elementListCompartment Id="1aa87b63-3fe2-40fe-98f5-7f8d5f24f9c3" absoluteBounds="6.265, 9.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="1395019c-7173-4d05-872d-e14d700514e6" absoluteBounds="5.89, 9.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="6e7671c8-1ef4-4147-9fe5-f721bde1bf72" absoluteBounds="0.75, 5.625, 2, 1.9631982421875005">
-      <DataClassMoniker Name="/baza_PetCareDataContext/User" />
-      <nestedChildShapes>
-        <elementListCompartment Id="979d9370-3b49-47fb-b083-eed61cc9f5a4" absoluteBounds="0.765, 6.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="3ffc3edc-40c0-49c3-af01-19e069f8efc1" absoluteBounds="6.25, 6.125, 2, 1.9631982421874996">
+    <classShape Id="0f535b7d-0ed7-4d31-bf3a-30b2a3392a90" absoluteBounds="1.875, 11.25, 2, 1.9631982421874996">
       <DataClassMoniker Name="/baza_PetCareDataContext/Health_Record" />
       <nestedChildShapes>
-        <elementListCompartment Id="a9708b1f-0c74-40c5-803f-e08e35417b20" absoluteBounds="6.265, 6.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="c62cd2f1-14f9-4946-b707-de6bf79a45a6" absoluteBounds="1.8899999999999997, 11.71, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="41759e23-8228-4e76-8f26-2d3109776677" absoluteBounds="6.25, 12.125, 2, 2.3478011067708344">
+    <classShape Id="ef96ba4f-a08b-4701-a605-fa3d5a3406fe" absoluteBounds="7.25, 11.875, 2, 2.3478011067708344">
       <DataClassMoniker Name="/baza_PetCareDataContext/Medication" />
       <nestedChildShapes>
-        <elementListCompartment Id="d70de5f5-1fbe-4f83-ab2f-603a61406b0b" absoluteBounds="6.265, 12.585, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="23ed9e3f-20ea-47df-b844-42b7c8785d1b" absoluteBounds="7.265, 12.335, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="9bd597c7-c64d-4cb4-8ca5-872dcaad6989" absoluteBounds="3.5, 4.125, 2, 1.7708968098958326">
+    <classShape Id="2d72f779-de4a-4c34-ba86-9e12934133a6" absoluteBounds="2.875, 5.875, 2, 1.7708968098958326">
       <DataClassMoniker Name="/baza_PetCareDataContext/Message" />
       <nestedChildShapes>
-        <elementListCompartment Id="76987841-1eb5-4a4d-a295-54323fa89d7b" absoluteBounds="3.515, 4.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="82b9f0a5-7888-4cd7-b5e0-c8c11f0c078e" absoluteBounds="2.8900000000000006, 6.3350000000000009, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="1ee97056-0088-43d4-a579-662243f153b6" absoluteBounds="3.5, 12, 2, 2.5401025390624987">
+    <classShape Id="9957e9ff-0b55-477a-b396-c0b735c3874a" absoluteBounds="4.375, 11.875, 2, 2.5401025390624987">
       <DataClassMoniker Name="/baza_PetCareDataContext/Pet" />
       <nestedChildShapes>
-        <elementListCompartment Id="222a10ef-c14f-4a59-a67e-b9e1ac65e2be" absoluteBounds="3.515, 12.46, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="cf446d2e-4697-4df2-b451-49f0aea87d81" absoluteBounds="4.3900000000000006, 12.335, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(1.75 : 7.5881982421875); (1.75 : 10.1065991210937); (2.19791916666667 : 10.1065991210937 : JumpStart); (2.36458583333333 : 10.1065991210937 : JumpEnd); (4.94791916666667 : 10.1065991210937 : JumpStart); (5.11458583333333 : 10.1065991210937 : JumpEnd); (6.25 : 10.1065991210937)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/baza_PetCareDataContext/User/User_Appointment" />
-      <nodes>
-        <classShapeMoniker Id="6e7671c8-1ef4-4147-9fe5-f721bde1bf72" />
-        <classShapeMoniker Id="79fc57e0-6059-41cf-978c-c041fef13aa1" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 6.85659912109375); (3.88541416666667 : 6.85659912109375 : JumpStart); (4.05208083333333 : 6.85659912109375 : JumpEnd); (6.25 : 6.85659912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/baza_PetCareDataContext/User/User_Health_Record" />
-      <nodes>
-        <classShapeMoniker Id="6e7671c8-1ef4-4147-9fe5-f721bde1bf72" />
-        <classShapeMoniker Id="3ffc3edc-40c0-49c3-af01-19e069f8efc1" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 6.34499596549479); (3.88541416666667 : 6.34499596549479 : JumpStart); (4.05208083333333 : 6.34499596549479 : JumpEnd); (4.5 : 6.34499596549479); (4.5 : 5.89589680989583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/baza_PetCareDataContext/User/User_Message" />
-      <nodes>
-        <classShapeMoniker Id="6e7671c8-1ef4-4147-9fe5-f721bde1bf72" />
-        <classShapeMoniker Id="9bd597c7-c64d-4cb4-8ca5-872dcaad6989" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 7.25365118164063); (3.9687475 : 7.25365118164063); (3.9687475 : 5.89589680989583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/baza_PetCareDataContext/User/User_Message1" />
-      <nodes>
-        <classShapeMoniker Id="6e7671c8-1ef4-4147-9fe5-f721bde1bf72" />
-        <classShapeMoniker Id="9bd597c7-c64d-4cb4-8ca5-872dcaad6989" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(4.5 : 12); (4.5 : 10.6286511816406); (4.94791916666667 : 10.6286511816406 : JumpStart); (5.11458583333333 : 10.6286511816406 : JumpEnd); (6.25 : 10.6286511816406)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <classShape Id="2c1e4ea0-cd1e-41b7-a6c0-2cfb820236ac" absoluteBounds="3, 8.375, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/baza_PetCareDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2f3fd00f-138e-4ccd-998d-05edc0be3409" absoluteBounds="3.015, 8.835, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(6.125 : 11.875); (6.125 : 10.8381982421875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/baza_PetCareDataContext/Pet/Pet_Appointment" />
       <nodes>
-        <classShapeMoniker Id="1ee97056-0088-43d4-a579-662243f153b6" />
-        <classShapeMoniker Id="79fc57e0-6059-41cf-978c-c041fef13aa1" />
+        <classShapeMoniker Id="9957e9ff-0b55-477a-b396-c0b735c3874a" />
+        <classShapeMoniker Id="fc263357-cead-41fc-9b48-e5904c3a7259" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.0312525 : 12); (5.0312525 : 7.67092471191406); (6.25 : 7.67092471191406)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.375 : 12.5440991210937); (3.875 : 12.5440991210937)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/baza_PetCareDataContext/Pet/Pet_Health_Record" />
       <nodes>
-        <classShapeMoniker Id="1ee97056-0088-43d4-a579-662243f153b6" />
-        <classShapeMoniker Id="3ffc3edc-40c0-49c3-af01-19e069f8efc1" />
+        <classShapeMoniker Id="9957e9ff-0b55-477a-b396-c0b735c3874a" />
+        <classShapeMoniker Id="0f535b7d-0ed7-4d31-bf3a-30b2a3392a90" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 13.2989005533854); (6.25 : 13.2989005533854)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6.375 : 13.0489005533854); (7.25 : 13.0489005533854)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/baza_PetCareDataContext/Pet/Pet_Medication" />
       <nodes>
-        <classShapeMoniker Id="1ee97056-0088-43d4-a579-662243f153b6" />
-        <classShapeMoniker Id="41759e23-8228-4e76-8f26-2d3109776677" />
+        <classShapeMoniker Id="9957e9ff-0b55-477a-b396-c0b735c3874a" />
+        <classShapeMoniker Id="ef96ba4f-a08b-4701-a605-fa3d5a3406fe" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.2812525 : 7.5881982421875); (2.2812525 : 13.2700512695312); (3.5 : 13.2700512695312)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5 : 9.70274983723958); (5.875 : 9.70274983723958)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/baza_PetCareDataContext/User/User_Appointment" />
+      <nodes>
+        <classShapeMoniker Id="2c1e4ea0-cd1e-41b7-a6c0-2cfb820236ac" />
+        <classShapeMoniker Id="fc263357-cead-41fc-9b48-e5904c3a7259" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.4375 : 10.5304996744792); (3.4375 : 11.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/baza_PetCareDataContext/User/User_Health_Record" />
+      <nodes>
+        <classShapeMoniker Id="2c1e4ea0-cd1e-41b7-a6c0-2cfb820236ac" />
+        <classShapeMoniker Id="0f535b7d-0ed7-4d31-bf3a-30b2a3392a90" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.9375 : 8.375); (3.9375 : 7.64589680989583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/baza_PetCareDataContext/User/User_Message" />
+      <nodes>
+        <classShapeMoniker Id="2c1e4ea0-cd1e-41b7-a6c0-2cfb820236ac" />
+        <classShapeMoniker Id="2d72f779-de4a-4c34-ba86-9e12934133a6" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.46875 : 8.375); (4.46875 : 7.64589680989583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/baza_PetCareDataContext/User/User_Message1" />
+      <nodes>
+        <classShapeMoniker Id="2c1e4ea0-cd1e-41b7-a6c0-2cfb820236ac" />
+        <classShapeMoniker Id="2d72f779-de4a-4c34-ba86-9e12934133a6" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.6875 : 10.5304996744792); (4.6875 : 11.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/baza_PetCareDataContext/User/User_Pet" />
       <nodes>
-        <classShapeMoniker Id="6e7671c8-1ef4-4147-9fe5-f721bde1bf72" />
-        <classShapeMoniker Id="1ee97056-0088-43d4-a579-662243f153b6" />
+        <classShapeMoniker Id="2c1e4ea0-cd1e-41b7-a6c0-2cfb820236ac" />
+        <classShapeMoniker Id="9957e9ff-0b55-477a-b396-c0b735c3874a" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

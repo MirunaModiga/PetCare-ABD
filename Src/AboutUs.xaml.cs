@@ -33,9 +33,23 @@ namespace testnou
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            HomePage home = new HomePage(this.user);
-            home.Show();
-            this.Close();
+            var context = new baza_PetCareDataContext();
+
+            string userType = (from user in context.Users
+                           where user._Username == this.user
+                           select user._usertype).ToString();
+
+            if(userType == "Veterinary") {
+                HomePage home = new HomePage(this.user);
+                home.Show();
+                this.Close();
+            }
+            else
+            {
+                HomePageVet home = new HomePageVet(this.user);
+                home.Show();
+                this.Close();
+            }
         }
     }
 }

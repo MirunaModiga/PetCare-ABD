@@ -155,7 +155,7 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock x:Name="petnameplace2" MouseDown="textPetBirth_MouseDown" Text="MM/DD/YY" Style="{StaticResource textHint}" Grid.ColumnSpan="2" FontSize="18" Margin="10,0,0,0" />
+                            <TextBlock x:Name="petnameplace2" MouseDown="textPetBirth_MouseDown" Text="dd/MM/yyyy" Style="{StaticResource textHint}" Grid.ColumnSpan="2" FontSize="18" Margin="10,0,0,0" />
                             <TextBox x:Name="petname2" TextChanged="txtPetBirth_TextChanged" Style="{StaticResource textBox}" Grid.ColumnSpan="2" Background="{x:Null}" />
                         </Grid>
                     </Border>

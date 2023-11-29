@@ -8,23 +8,8 @@
       <Column Name="[_date]" Member="_date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="[_purpose]" Member="_purpose" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="[_status]" Member="_status" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
-      <Association Name="User_Appointment" Member="User" ThisKey="_DoctorID" OtherKey="IDUser" Type="User" IsForeignKey="true" />
       <Association Name="Pet_Appointment" Member="Pet" ThisKey="_PetID" OtherKey="IDPet" Type="Pet" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Users" Member="Users">
-    <Type Name="User">
-      <Column Name="IDUser" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="[_FullName]" Member="_FullName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="[_Username]" Member="_Username" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="[_Password]" Member="_Password" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="[_Email]" Member="_Email" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="[_usertype]" Member="_usertype" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
-      <Association Name="User_Appointment" Member="Appointments" ThisKey="IDUser" OtherKey="_DoctorID" Type="Appointment" />
-      <Association Name="User_Health_Record" Member="Health_Records" ThisKey="IDUser" OtherKey="_DoctorID" Type="Health_Record" />
-      <Association Name="User_Message" Member="Messages" ThisKey="IDUser" OtherKey="_ReceiverID" Type="Message" />
-      <Association Name="User_Message1" Member="Messages1" ThisKey="IDUser" OtherKey="_SenderID" Type="Message" />
-      <Association Name="User_Pet" Member="Pets" ThisKey="IDUser" OtherKey="_OwnerID" Type="Pet" />
+      <Association Name="User_Appointment" Member="User" ThisKey="_DoctorID" OtherKey="IDUser" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.[Health Records]" Member="Health_Records">
@@ -35,8 +20,8 @@
       <Column Name="[_date]" Member="_date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="[_diagnosis]" Member="_diagnosis" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="[_treatment]" Member="_treatment" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Association Name="User_Health_Record" Member="User" ThisKey="_DoctorID" OtherKey="IDUser" Type="User" IsForeignKey="true" />
       <Association Name="Pet_Health_Record" Member="Pet" ThisKey="_PetID" OtherKey="IDPet" Type="Pet" IsForeignKey="true" />
+      <Association Name="User_Health_Record" Member="User" ThisKey="_DoctorID" OtherKey="IDUser" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Medication" Member="Medications">
@@ -78,6 +63,22 @@
       <Association Name="Pet_Health_Record" Member="Health_Records" ThisKey="IDPet" OtherKey="_PetID" Type="Health_Record" />
       <Association Name="Pet_Medication" Member="Medications" ThisKey="IDPet" OtherKey="_PetID" Type="Medication" />
       <Association Name="User_Pet" Member="User" ThisKey="_OwnerID" OtherKey="IDUser" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="IDUser" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="[_FullName]" Member="_FullName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[_Username]" Member="_Username" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="[_Password]" Member="_Password" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="[_Email]" Member="_Email" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="[_usertype]" Member="_usertype" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="[_workDate]" Member="_workDate" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Association Name="User_Appointment" Member="Appointments" ThisKey="IDUser" OtherKey="_DoctorID" Type="Appointment" />
+      <Association Name="User_Health_Record" Member="Health_Records" ThisKey="IDUser" OtherKey="_DoctorID" Type="Health_Record" />
+      <Association Name="User_Message" Member="Messages" ThisKey="IDUser" OtherKey="_ReceiverID" Type="Message" />
+      <Association Name="User_Message1" Member="Messages1" ThisKey="IDUser" OtherKey="_SenderID" Type="Message" />
+      <Association Name="User_Pet" Member="Pets" ThisKey="IDUser" OtherKey="_OwnerID" Type="Pet" />
     </Type>
   </Table>
 </Database>

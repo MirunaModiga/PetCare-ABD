@@ -97,5 +97,12 @@ namespace testnou
             mypets.Show();
             this.Close();
         }
+
+        private void MakeAppointment_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Appointment app = new Appointment(this.user);
+            app.Show();
+            this.Close();
+        }
     }
 }

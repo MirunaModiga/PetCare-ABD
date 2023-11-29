@@ -1,0 +1,169 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:testnou"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="testnou.Appointment"
+        mc:Ignorable="d"
+        Title="Appointment" Height="498" Width="900" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent" Foreground="Black">
+    <Window.Resources>
+        <ImageBrush x:Key="CloseBtn_MouseOver" ImageSource="\images\icons8-shutdown-48.png"/>
+
+        <Style x:Key="Close_btn" TargetType="{x:Type Button}">
+
+            <Setter Property="Template">
+
+                <Setter.Value>
+
+                    <ControlTemplate TargetType="{x:Type Button}">
+
+                        <Border x:Name="button"
+                                BorderThickness="0"
+                                Background="{TemplateBinding Background}"
+                                SnapsToDevicePixels="True"/>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+
+                                <Setter Property="Background"
+                                        TargetName="button"
+                                        Value="{StaticResource CloseBtn_MouseOver}"/>
+
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+
+            </Setter>
+
+        </Style>
+
+        <Style x:Key="textHint" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Grid.Column" Value="1" />
+            <Setter Property="Panel.ZIndex" Value="1" />
+            <Setter Property="Margin" Value="10 0 0 0" />
+            <Setter Property="Foreground" Value="#ACB0AF" />
+        </Style>
+
+        <Style x:Key="textBox" TargetType="{x:Type Control}">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Grid.Column" Value="1" />
+            <Setter Property="Margin" Value="10 0 0 0" />
+            <Setter Property="Foreground" Value="#878787" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+
+    </Window.Resources>
+
+    <Grid Background="White">
+        <Rectangle HorizontalAlignment="Left" Height="70" Margin="820,418,0,0" VerticalAlignment="Top" Width="70">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/images/pet.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Grid HorizontalAlignment="Left" Height="457" VerticalAlignment="Top" Width="379" Margin="0,31,0,0">
+            <Grid.Background>
+                <ImageBrush ImageSource="/images/doctor.jpg" Stretch="UniformToFill"/>
+            </Grid.Background>
+        </Grid>
+        <materialDesign:Card Content="Card" HorizontalAlignment="Left" Margin="974,229,0,0" VerticalAlignment="Top"/>
+        <Grid Margin="384,0,0,0">
+            <Grid HorizontalAlignment="Center" Height="113" VerticalAlignment="Top" Width="516" Margin="0,77,0,0">
+                <Border BorderThickness="1" HorizontalAlignment="Left" Height="43" Margin="10,10,0,0" VerticalAlignment="Top" Width="219" CornerRadius="10,10,10,10">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="White"/>
+                            <GradientStop Color="#FFD6F8E8" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <TextBlock HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" Text="Please select your pet" VerticalAlignment="Center" Width="199" Foreground="#FF182F35" FontFamily="Calibri Light" FontSize="17" TextAlignment="Center"/>
+                </Border>
+                <ComboBox x:Name="PetListCombo" HorizontalAlignment="Left" Margin="28,58,0,0" VerticalAlignment="Top" Width="180" Height="35" SelectionChanged="PetListCombo_SelectionChanged"/>
+                <DatePicker x:Name="DatePicker" HorizontalAlignment="Left" Margin="296,58,0,0" VerticalAlignment="Top" Height="35" Width="180" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
+                <Border BorderThickness="1" HorizontalAlignment="Left" Height="43" Margin="277,10,0,0" VerticalAlignment="Top" Width="219" CornerRadius="10,10,10,10">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="White"/>
+                            <GradientStop Color="#FFD6F8E8" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <TextBlock HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" Text="Please pick a date" VerticalAlignment="Center" Width="199" Foreground="#FF182F35" FontFamily="Calibri Light" FontSize="17" TextAlignment="Center"/>
+                </Border>
+            </Grid>
+            <Grid HorizontalAlignment="Left" Height="214" VerticalAlignment="Top" Width="254" Margin="0,190,0,0">
+                <Border BorderThickness="1" HorizontalAlignment="Center" Height="43" Margin="0,10,0,0" VerticalAlignment="Top" Width="218" CornerRadius="10,10,10,10">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="White"/>
+                            <GradientStop Color="#FFD6F8E8" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <TextBlock HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" Text="Choose your doctor" VerticalAlignment="Center" Width="199" Foreground="#FF182F35" FontFamily="Calibri Light" FontSize="17" TextAlignment="Center"/>
+                </Border>
+                <ComboBox x:Name="DoctorsListCombo" HorizontalAlignment="Left" Margin="30,58,0,0" VerticalAlignment="Top" Width="180" Height="35" SelectionChanged="DoctorsListCombo_SelectionChanged"/>
+                <Border BorderThickness="1" HorizontalAlignment="Left" Height="43" Margin="10,114,0,0" VerticalAlignment="Top" Width="219" CornerRadius="10,10,10,10">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="White"/>
+                            <GradientStop Color="#FFD6F8E8" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <TextBlock HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" Text="Available hours " VerticalAlignment="Center" Width="199" Foreground="#FF182F35" FontFamily="Calibri Light" FontSize="17" TextAlignment="Center"/>
+                </Border>
+                <materialDesign:TimePicker x:Name="TimePicker" HorizontalAlignment="Left" Margin="30,162,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.238,-0.053" Width="180" Height="31" SelectedTimeChanged="TimeApointmentChanged"/>
+            </Grid>
+            <Grid HorizontalAlignment="Left" Height="214" VerticalAlignment="Top" Width="262" Margin="254,190,0,0">
+                <Border BorderThickness="1" HorizontalAlignment="Left" Height="43" Margin="12,10,0,0" VerticalAlignment="Top" Width="220" CornerRadius="10,10,10,10">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="White"/>
+                            <GradientStop Color="#FFD6F8E8" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <TextBlock HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" Text="What you need this for?" VerticalAlignment="Center" Width="199" Foreground="#FF182F35" FontFamily="Calibri Light" FontSize="17" TextAlignment="Center"/>
+                </Border>
+                <Border BorderBrush="#ACB0AF" BorderThickness="1" Margin="18,58,30,48" CornerRadius="5" Background="White">
+                    <Grid Margin="7 7">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock x:Name="serviceplaceholder" MouseDown="textService_MouseDown" Style="{StaticResource textHint}" Grid.ColumnSpan="2" FontSize="15" Text="Pet Care Services / Purpose" />
+                        <TextBox x:Name="purposeText" TextChanged="txtService_TextChanged" Style="{StaticResource textBox}" Grid.ColumnSpan="2" Background="{x:Null}" />
+                    </Grid>
+                </Border>
+            </Grid>
+            <Grid HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="900" Margin="-384,0,0,0" Background="#FFD6F8E8">
+                <Button x:Name="CloseBtnPet"
+                        Height="30"
+                        Width="30"
+                        BorderThickness="0"
+                        Style="{StaticResource Close_btn}" Click="CloseBtnPet_Click" Margin="860,6,10,7">
+
+                    <Button.Background>
+
+                        <ImageBrush ImageSource="\images\icons8-power-off-button-64.png"/>
+
+                    </Button.Background>
+
+                </Button>
+                <Button Content="" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="30" Height="30" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="HomeButton_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/images/icons8-home-30.png"/>
+                    </Button.Background>
+                </Button>
+                <TextBlock HorizontalAlignment="Center" Height="30" TextWrapping="Wrap" Text="Find the perfect vet for your pet &amp; make an appointment" VerticalAlignment="Center" Width="720" FontFamily="Sitka Small Semibold" FontSize="22" TextAlignment="Center" LineHeight="9" Foreground="#FF182F35"/>
+            </Grid>
+            <Button Content="Book an appointment" Background="#FF1F5C58" Margin="66,425,138,23" BorderBrush="#FF005A96" Height="50" Click="BookAppointmentButton_Click" FontFamily="Sitka Small Semibold" FontSize="20" />
+        </Grid>
+    </Grid>
+</Window>

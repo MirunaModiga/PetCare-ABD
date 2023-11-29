@@ -184,8 +184,8 @@
                         <ImageBrush ImageSource="/images/pngegg.png" Stretch="Uniform"/>
                     </Rectangle.Fill>
                 </Rectangle>
-                <Button x:Name="profile" Content="Personalize profile" HorizontalAlignment="Left" Height="67" Margin="595,328,0,0" VerticalAlignment="Top" Width="240" FontSize="20" FontFamily="Sitka Small" AutomationProperties.IsOffscreenBehavior="Onscreen" Background="{DynamicResource PrimaryHueMidBrush}" Foreground="White"/>
-                <Border BorderBrush="Black" BorderThickness="1" Width="240" Height="67" Margin="595,328,65,102.6"/>
+                <ComboBox x:Name="DayOfWork" HorizontalAlignment="Left" Height="30" Margin="616,349,0,0" Text="Choose your working date" VerticalAlignment="Top" Width="190" FontSize="15" FontFamily="Sitka Small Semibold" Foreground="Black" SelectionChanged="DayOfWork_SelectionChanged"/>
+                <TextBox HorizontalAlignment="Left" Height="28" Margin="609,319,0,0" TextWrapping="Wrap" Text="Choose your working day" VerticalAlignment="Top" Width="215" FontFamily="Sitka Small Semibold" Foreground="Black" SelectionOpacity="0" FontSize="15" TextAlignment="Center"/>
                 <Rectangle HorizontalAlignment="Left" Height="70" Margin="830,428,0,0" VerticalAlignment="Top" Width="70">
                     <Rectangle.Fill>
                         <ImageBrush ImageSource="/images/pet.png" Stretch="Uniform"/>

@@ -19,15 +19,18 @@ namespace testnou
     /// </summary>
     public partial class HomePageVet : Window
     {
-        public HomePageVet()
+        public object SelectedWorkDay { get; set; }
+        string user;
+        public HomePageVet(string user)
         {
             InitializeComponent();
+            this.user = user;
+            string[] daysOfWork = new[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+            DayOfWork.ItemsSource = daysOfWork;
         }
 
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
         {
-            // Set tooltip visibility
-
             if (Tg_BtnVet.IsChecked == true)
             {
                 tt_homevet.Visibility = Visibility.Collapsed;
@@ -47,13 +50,11 @@ namespace testnou
         private void Tg_BtnVet_Unchecked(object sender, RoutedEventArgs e)
         {
             img_bgVet.Opacity = 1;
-            profile.Opacity = 1;
         }
 
         private void Tg_BtnVet_Checked(object sender, RoutedEventArgs e)
         {
             img_bgVet.Opacity = 0.3;
-            profile.Opacity = 0.3;
         }
 
         private void BG_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -71,6 +72,43 @@ namespace testnou
             StartUp start = new StartUp();
             start.Show();
             this.Close();
+        }
+        
+        private void VetAboutUs_Click(object sender, RoutedEventArgs e)
+        {
+            AboutUs info = new AboutUs(this.user);
+            info.Show();
+            this.Close();
+        }
+
+        private void DayOfWork_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.SelectedWorkDay = DayOfWork.SelectedItem;
+            string workDay = (string)this.SelectedWorkDay;
+
+            if (workDay == null)
+            {
+                MessageBox.Show("Please choose a day when you want to work!");
+                return;
+            }
+
+            var context = new baza_PetCareDataContext();
+
+            var customer = (from c in context.Users
+
+                            where c._Username == user
+                            select c).FirstOrDefault();
+
+            if (customer != null)
+            {
+                customer._workDate = workDay;
+                context.SubmitChanges();
+                MessageBox.Show("Working date registration successful!");
+            }
+            else
+            {
+                MessageBox.Show("User not found or null");
+            }
         }
     }
 }

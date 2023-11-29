@@ -33,9 +33,6 @@ namespace testnou
     partial void InsertAppointment(Appointment instance);
     partial void UpdateAppointment(Appointment instance);
     partial void DeleteAppointment(Appointment instance);
-    partial void InsertUser(User instance);
-    partial void UpdateUser(User instance);
-    partial void DeleteUser(User instance);
     partial void InsertHealth_Record(Health_Record instance);
     partial void UpdateHealth_Record(Health_Record instance);
     partial void DeleteHealth_Record(Health_Record instance);
@@ -48,6 +45,9 @@ namespace testnou
     partial void InsertPet(Pet instance);
     partial void UpdatePet(Pet instance);
     partial void DeletePet(Pet instance);
+    partial void InsertUser(User instance);
+    partial void UpdateUser(User instance);
+    partial void DeleteUser(User instance);
     #endregion
 		
 		public baza_PetCareDataContext() : 
@@ -88,14 +88,6 @@ namespace testnou
 			}
 		}
 		
-		public System.Data.Linq.Table<User> Users
-		{
-			get
-			{
-				return this.GetTable<User>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Health_Record> Health_Records
 		{
 			get
@@ -127,6 +119,14 @@ namespace testnou
 				return this.GetTable<Pet>();
 			}
 		}
+		
+		public System.Data.Linq.Table<User> Users
+		{
+			get
+			{
+				return this.GetTable<User>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Appointments")]
@@ -147,9 +147,9 @@ namespace testnou
 		
 		private string @__status;
 		
-		private EntityRef<User> _User;
-		
 		private EntityRef<Pet> _Pet;
+		
+		private EntityRef<User> _User;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -171,8 +171,8 @@ namespace testnou
 		
 		public Appointment()
 		{
-			this._User = default(EntityRef<User>);
 			this._Pet = default(EntityRef<Pet>);
+			this._User = default(EntityRef<User>);
 			OnCreated();
 		}
 		
@@ -296,40 +296,6 @@ namespace testnou
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Appointment", Storage="_User", ThisKey="_DoctorID", OtherKey="IDUser", IsForeignKey=true)]
-		public User User
-		{
-			get
-			{
-				return this._User.Entity;
-			}
-			set
-			{
-				User previousValue = this._User.Entity;
-				if (((previousValue != value) 
-							|| (this._User.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._User.Entity = null;
-						previousValue.Appointments.Remove(this);
-					}
-					this._User.Entity = value;
-					if ((value != null))
-					{
-						value.Appointments.Add(this);
-						this.@__DoctorID = value.IDUser;
-					}
-					else
-					{
-						this.@__DoctorID = default(int);
-					}
-					this.SendPropertyChanged("User");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Pet_Appointment", Storage="_Pet", ThisKey="_PetID", OtherKey="IDPet", IsForeignKey=true)]
 		public Pet Pet
 		{
@@ -364,265 +330,37 @@ namespace testnou
 			}
 		}
 		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
-	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _IDUser;
-		
-		private string @__FullName;
-		
-		private string @__Username;
-		
-		private string @__Password;
-		
-		private string @__Email;
-		
-		private string @__usertype;
-		
-		private EntitySet<Appointment> _Appointments;
-		
-		private EntitySet<Health_Record> _Health_Records;
-		
-		private EntitySet<Message> _Messages;
-		
-		private EntitySet<Message> _Messages1;
-		
-		private EntitySet<Pet> _Pets;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDUserChanging(int value);
-    partial void OnIDUserChanged();
-    partial void On_FullNameChanging(string value);
-    partial void On_FullNameChanged();
-    partial void On_UsernameChanging(string value);
-    partial void On_UsernameChanged();
-    partial void On_PasswordChanging(string value);
-    partial void On_PasswordChanged();
-    partial void On_EmailChanging(string value);
-    partial void On_EmailChanged();
-    partial void On_usertypeChanging(string value);
-    partial void On_usertypeChanged();
-    #endregion
-		
-		public User()
-		{
-			this._Appointments = new EntitySet<Appointment>(new Action<Appointment>(this.attach_Appointments), new Action<Appointment>(this.detach_Appointments));
-			this._Health_Records = new EntitySet<Health_Record>(new Action<Health_Record>(this.attach_Health_Records), new Action<Health_Record>(this.detach_Health_Records));
-			this._Messages = new EntitySet<Message>(new Action<Message>(this.attach_Messages), new Action<Message>(this.detach_Messages));
-			this._Messages1 = new EntitySet<Message>(new Action<Message>(this.attach_Messages1), new Action<Message>(this.detach_Messages1));
-			this._Pets = new EntitySet<Pet>(new Action<Pet>(this.attach_Pets), new Action<Pet>(this.detach_Pets));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDUser", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int IDUser
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Appointment", Storage="_User", ThisKey="_DoctorID", OtherKey="IDUser", IsForeignKey=true)]
+		public User User
 		{
 			get
 			{
-				return this._IDUser;
+				return this._User.Entity;
 			}
 			set
 			{
-				if ((this._IDUser != value))
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
 				{
-					this.OnIDUserChanging(value);
 					this.SendPropertyChanging();
-					this._IDUser = value;
-					this.SendPropertyChanged("IDUser");
-					this.OnIDUserChanged();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.Appointments.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.Appointments.Add(this);
+						this.@__DoctorID = value.IDUser;
+					}
+					else
+					{
+						this.@__DoctorID = default(int);
+					}
+					this.SendPropertyChanged("User");
 				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_FullName]", Storage="__FullName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string _FullName
-		{
-			get
-			{
-				return this.@__FullName;
-			}
-			set
-			{
-				if ((this.@__FullName != value))
-				{
-					this.On_FullNameChanging(value);
-					this.SendPropertyChanging();
-					this.@__FullName = value;
-					this.SendPropertyChanged("_FullName");
-					this.On_FullNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_Username]", Storage="__Username", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
-		public string _Username
-		{
-			get
-			{
-				return this.@__Username;
-			}
-			set
-			{
-				if ((this.@__Username != value))
-				{
-					this.On_UsernameChanging(value);
-					this.SendPropertyChanging();
-					this.@__Username = value;
-					this.SendPropertyChanged("_Username");
-					this.On_UsernameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_Password]", Storage="__Password", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
-		public string _Password
-		{
-			get
-			{
-				return this.@__Password;
-			}
-			set
-			{
-				if ((this.@__Password != value))
-				{
-					this.On_PasswordChanging(value);
-					this.SendPropertyChanging();
-					this.@__Password = value;
-					this.SendPropertyChanged("_Password");
-					this.On_PasswordChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_Email]", Storage="__Email", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
-		public string _Email
-		{
-			get
-			{
-				return this.@__Email;
-			}
-			set
-			{
-				if ((this.@__Email != value))
-				{
-					this.On_EmailChanging(value);
-					this.SendPropertyChanging();
-					this.@__Email = value;
-					this.SendPropertyChanged("_Email");
-					this.On_EmailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_usertype]", Storage="__usertype", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
-		public string _usertype
-		{
-			get
-			{
-				return this.@__usertype;
-			}
-			set
-			{
-				if ((this.@__usertype != value))
-				{
-					this.On_usertypeChanging(value);
-					this.SendPropertyChanging();
-					this.@__usertype = value;
-					this.SendPropertyChanged("_usertype");
-					this.On_usertypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Appointment", Storage="_Appointments", ThisKey="IDUser", OtherKey="_DoctorID")]
-		public EntitySet<Appointment> Appointments
-		{
-			get
-			{
-				return this._Appointments;
-			}
-			set
-			{
-				this._Appointments.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Health_Record", Storage="_Health_Records", ThisKey="IDUser", OtherKey="_DoctorID")]
-		public EntitySet<Health_Record> Health_Records
-		{
-			get
-			{
-				return this._Health_Records;
-			}
-			set
-			{
-				this._Health_Records.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Message", Storage="_Messages", ThisKey="IDUser", OtherKey="_ReceiverID")]
-		public EntitySet<Message> Messages
-		{
-			get
-			{
-				return this._Messages;
-			}
-			set
-			{
-				this._Messages.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Message1", Storage="_Messages1", ThisKey="IDUser", OtherKey="_SenderID")]
-		public EntitySet<Message> Messages1
-		{
-			get
-			{
-				return this._Messages1;
-			}
-			set
-			{
-				this._Messages1.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Pet", Storage="_Pets", ThisKey="IDUser", OtherKey="_OwnerID")]
-		public EntitySet<Pet> Pets
-		{
-			get
-			{
-				return this._Pets;
-			}
-			set
-			{
-				this._Pets.Assign(value);
 			}
 		}
 		
@@ -644,66 +382,6 @@ namespace testnou
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_Appointments(Appointment entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_Appointments(Appointment entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_Health_Records(Health_Record entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_Health_Records(Health_Record entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_Messages(Message entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_Messages(Message entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_Messages1(Message entity)
-		{
-			this.SendPropertyChanging();
-			entity.User1 = this;
-		}
-		
-		private void detach_Messages1(Message entity)
-		{
-			this.SendPropertyChanging();
-			entity.User1 = null;
-		}
-		
-		private void attach_Pets(Pet entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_Pets(Pet entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
 		}
 	}
 	
@@ -725,9 +403,9 @@ namespace testnou
 		
 		private string @__treatment;
 		
-		private EntityRef<User> _User;
-		
 		private EntityRef<Pet> _Pet;
+		
+		private EntityRef<User> _User;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -749,8 +427,8 @@ namespace testnou
 		
 		public Health_Record()
 		{
-			this._User = default(EntityRef<User>);
 			this._Pet = default(EntityRef<Pet>);
+			this._User = default(EntityRef<User>);
 			OnCreated();
 		}
 		
@@ -874,40 +552,6 @@ namespace testnou
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Health_Record", Storage="_User", ThisKey="_DoctorID", OtherKey="IDUser", IsForeignKey=true)]
-		public User User
-		{
-			get
-			{
-				return this._User.Entity;
-			}
-			set
-			{
-				User previousValue = this._User.Entity;
-				if (((previousValue != value) 
-							|| (this._User.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._User.Entity = null;
-						previousValue.Health_Records.Remove(this);
-					}
-					this._User.Entity = value;
-					if ((value != null))
-					{
-						value.Health_Records.Add(this);
-						this.@__DoctorID = value.IDUser;
-					}
-					else
-					{
-						this.@__DoctorID = default(int);
-					}
-					this.SendPropertyChanged("User");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Pet_Health_Record", Storage="_Pet", ThisKey="_PetID", OtherKey="IDPet", IsForeignKey=true)]
 		public Pet Pet
 		{
@@ -938,6 +582,40 @@ namespace testnou
 						this.@__PetID = default(int);
 					}
 					this.SendPropertyChanged("Pet");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Health_Record", Storage="_User", ThisKey="_DoctorID", OtherKey="IDUser", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.Health_Records.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.Health_Records.Add(this);
+						this.@__DoctorID = value.IDUser;
+					}
+					else
+					{
+						this.@__DoctorID = default(int);
+					}
+					this.SendPropertyChanged("User");
 				}
 			}
 		}
@@ -1834,6 +1512,352 @@ namespace testnou
 		{
 			this.SendPropertyChanging();
 			entity.Pet = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
+	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _IDUser;
+		
+		private string @__FullName;
+		
+		private string @__Username;
+		
+		private string @__Password;
+		
+		private string @__Email;
+		
+		private string @__usertype;
+		
+		private string @__workDate;
+		
+		private EntitySet<Appointment> _Appointments;
+		
+		private EntitySet<Health_Record> _Health_Records;
+		
+		private EntitySet<Message> _Messages;
+		
+		private EntitySet<Message> _Messages1;
+		
+		private EntitySet<Pet> _Pets;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDUserChanging(int value);
+    partial void OnIDUserChanged();
+    partial void On_FullNameChanging(string value);
+    partial void On_FullNameChanged();
+    partial void On_UsernameChanging(string value);
+    partial void On_UsernameChanged();
+    partial void On_PasswordChanging(string value);
+    partial void On_PasswordChanged();
+    partial void On_EmailChanging(string value);
+    partial void On_EmailChanged();
+    partial void On_usertypeChanging(string value);
+    partial void On_usertypeChanged();
+    partial void On_workDateChanging(string value);
+    partial void On_workDateChanged();
+    #endregion
+		
+		public User()
+		{
+			this._Appointments = new EntitySet<Appointment>(new Action<Appointment>(this.attach_Appointments), new Action<Appointment>(this.detach_Appointments));
+			this._Health_Records = new EntitySet<Health_Record>(new Action<Health_Record>(this.attach_Health_Records), new Action<Health_Record>(this.detach_Health_Records));
+			this._Messages = new EntitySet<Message>(new Action<Message>(this.attach_Messages), new Action<Message>(this.detach_Messages));
+			this._Messages1 = new EntitySet<Message>(new Action<Message>(this.attach_Messages1), new Action<Message>(this.detach_Messages1));
+			this._Pets = new EntitySet<Pet>(new Action<Pet>(this.attach_Pets), new Action<Pet>(this.detach_Pets));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDUser", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int IDUser
+		{
+			get
+			{
+				return this._IDUser;
+			}
+			set
+			{
+				if ((this._IDUser != value))
+				{
+					this.OnIDUserChanging(value);
+					this.SendPropertyChanging();
+					this._IDUser = value;
+					this.SendPropertyChanged("IDUser");
+					this.OnIDUserChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_FullName]", Storage="__FullName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string _FullName
+		{
+			get
+			{
+				return this.@__FullName;
+			}
+			set
+			{
+				if ((this.@__FullName != value))
+				{
+					this.On_FullNameChanging(value);
+					this.SendPropertyChanging();
+					this.@__FullName = value;
+					this.SendPropertyChanged("_FullName");
+					this.On_FullNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_Username]", Storage="__Username", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string _Username
+		{
+			get
+			{
+				return this.@__Username;
+			}
+			set
+			{
+				if ((this.@__Username != value))
+				{
+					this.On_UsernameChanging(value);
+					this.SendPropertyChanging();
+					this.@__Username = value;
+					this.SendPropertyChanged("_Username");
+					this.On_UsernameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_Password]", Storage="__Password", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string _Password
+		{
+			get
+			{
+				return this.@__Password;
+			}
+			set
+			{
+				if ((this.@__Password != value))
+				{
+					this.On_PasswordChanging(value);
+					this.SendPropertyChanging();
+					this.@__Password = value;
+					this.SendPropertyChanged("_Password");
+					this.On_PasswordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_Email]", Storage="__Email", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string _Email
+		{
+			get
+			{
+				return this.@__Email;
+			}
+			set
+			{
+				if ((this.@__Email != value))
+				{
+					this.On_EmailChanging(value);
+					this.SendPropertyChanging();
+					this.@__Email = value;
+					this.SendPropertyChanged("_Email");
+					this.On_EmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_usertype]", Storage="__usertype", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string _usertype
+		{
+			get
+			{
+				return this.@__usertype;
+			}
+			set
+			{
+				if ((this.@__usertype != value))
+				{
+					this.On_usertypeChanging(value);
+					this.SendPropertyChanging();
+					this.@__usertype = value;
+					this.SendPropertyChanged("_usertype");
+					this.On_usertypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_workDate]", Storage="__workDate", DbType="NVarChar(10)")]
+		public string _workDate
+		{
+			get
+			{
+				return this.@__workDate;
+			}
+			set
+			{
+				if ((this.@__workDate != value))
+				{
+					this.On_workDateChanging(value);
+					this.SendPropertyChanging();
+					this.@__workDate = value;
+					this.SendPropertyChanged("_workDate");
+					this.On_workDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Appointment", Storage="_Appointments", ThisKey="IDUser", OtherKey="_DoctorID")]
+		public EntitySet<Appointment> Appointments
+		{
+			get
+			{
+				return this._Appointments;
+			}
+			set
+			{
+				this._Appointments.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Health_Record", Storage="_Health_Records", ThisKey="IDUser", OtherKey="_DoctorID")]
+		public EntitySet<Health_Record> Health_Records
+		{
+			get
+			{
+				return this._Health_Records;
+			}
+			set
+			{
+				this._Health_Records.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Message", Storage="_Messages", ThisKey="IDUser", OtherKey="_ReceiverID")]
+		public EntitySet<Message> Messages
+		{
+			get
+			{
+				return this._Messages;
+			}
+			set
+			{
+				this._Messages.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Message1", Storage="_Messages1", ThisKey="IDUser", OtherKey="_SenderID")]
+		public EntitySet<Message> Messages1
+		{
+			get
+			{
+				return this._Messages1;
+			}
+			set
+			{
+				this._Messages1.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Pet", Storage="_Pets", ThisKey="IDUser", OtherKey="_OwnerID")]
+		public EntitySet<Pet> Pets
+		{
+			get
+			{
+				return this._Pets;
+			}
+			set
+			{
+				this._Pets.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Appointments(Appointment entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Appointments(Appointment entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_Health_Records(Health_Record entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Health_Records(Health_Record entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_Messages(Message entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Messages(Message entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_Messages1(Message entity)
+		{
+			this.SendPropertyChanging();
+			entity.User1 = this;
+		}
+		
+		private void detach_Messages1(Message entity)
+		{
+			this.SendPropertyChanging();
+			entity.User1 = null;
+		}
+		
+		private void attach_Pets(Pet entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Pets(Pet entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
 		}
 	}
 }
