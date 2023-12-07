@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace testnou
+namespace myPetCare
 {
     /// <summary>
     /// Interaction logic for StartUp.xaml

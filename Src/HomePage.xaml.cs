@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace testnou
+namespace myPetCare
 {
     /// <summary>
     /// Interaction logic for HomePage.xaml
@@ -67,7 +67,7 @@ namespace testnou
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            Application.Current.Shutdown();
         }
 
         private void registerPet_Click(object sender, RoutedEventArgs e)
@@ -98,10 +98,24 @@ namespace testnou
             this.Close();
         }
 
+        private void ListView_Chat_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Chat chat = new Chat(this.user);
+            chat.Show();
+            this.Close();
+        }
+
         private void MakeAppointment_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             Appointment app = new Appointment(this.user);
             app.Show();
+            this.Close();
+        }
+
+        private void TrackMedication_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Medication med = new Medication(this.user);
+            med.Show();
             this.Close();
         }
     }

@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace testnou
+namespace myPetCare
 {
     /// <summary>
     /// Interaction logic for AboutUs.xaml
@@ -20,6 +20,9 @@ namespace testnou
     public partial class AboutUs : Window
     {
         string user;
+
+        baza_PetCareDataContext context = new baza_PetCareDataContext();
+
         public AboutUs(string user)
         {
             InitializeComponent();
@@ -28,18 +31,16 @@ namespace testnou
 
         private void CloseBtnPet_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            Application.Current.Shutdown();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var context = new baza_PetCareDataContext();
-
             string userType = (from user in context.Users
-                           where user._Username == this.user
-                           select user._usertype).ToString();
+                              where user._Username == this.user
+                              select user._usertype).FirstOrDefault();
 
-            if(userType == "Veterinary") {
+            if(userType == "Owner") {
                 HomePage home = new HomePage(this.user);
                 home.Show();
                 this.Close();

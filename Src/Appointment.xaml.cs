@@ -17,7 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MaterialDesignThemes.Wpf;
 
-namespace testnou
+namespace myPetCare
 {
     /// <summary>
     /// Interaction logic for Appointment.xaml
@@ -32,14 +32,13 @@ namespace testnou
         string purpose = "";
         DateTime date;
 
-        baza_PetCareDataContext ctx = new baza_PetCareDataContext();
+        baza_PetCareDataContext context = new baza_PetCareDataContext();
 
         public Appointment(string user)
         {
             InitializeComponent();
 
             DatePicker.SelectedDate=DateTime.Now;
-            var context = new baza_PetCareDataContext();
             this.user = user;
             userID = (from u in context.Users where u._Username == user select new { u.IDUser }).SingleOrDefault().IDUser;
 
@@ -55,7 +54,7 @@ namespace testnou
 
         private void CloseBtnPet_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            Application.Current.Shutdown();
         }
 
         private void HomeButton_Click(object sender, RoutedEventArgs e)
@@ -67,8 +66,6 @@ namespace testnou
 
         private void PetListCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var context = new baza_PetCareDataContext();
-
             string selectedPetName = PetListCombo.SelectedItem as string;
 
             this.selectedPetID = (from pet_obj in context.Pets
@@ -81,7 +78,6 @@ namespace testnou
             this.selectedDate = DatePicker.SelectedDate.GetValueOrDefault().Date.ToShortDateString();
             string day = DatePicker.SelectedDate.GetValueOrDefault().DayOfWeek.ToString();
 
-            var context = new baza_PetCareDataContext();
             var availableDoctors = (from doc in context.Users
                                     where doc._workDate == DatePicker.SelectedDate.GetValueOrDefault().DayOfWeek.ToString()
                                     select doc._FullName).ToList();
@@ -98,8 +94,6 @@ namespace testnou
                 MessageBox.Show("Please select a date first!");
                 return;
             }
-
-            var context = new baza_PetCareDataContext();
 
             string selectedDoctorName = DoctorsListCombo.SelectedItem as string;
 
@@ -131,8 +125,6 @@ namespace testnou
             DateTime data = new DateTime(selectedDateTime.Year, selectedDateTime.Month, selectedDateTime.Day)+new TimeSpan(selectedTime.Hour,selectedTime.Minute, selectedTime.Second);
 
             DateTime endInterval = startInterval.AddHours(1);
-
-            var context = new baza_PetCareDataContext();
 
             var existingAppointments = from app in context.Appointments
                                        where app._DoctorID == selectedDoctorID
@@ -174,13 +166,8 @@ namespace testnou
           //  DateTime data = Convert.ToDateTime(formattedDate);
 
             /////////////////////////////////////////////////////////// ora 
-            
-            var context = new baza_PetCareDataContext();
 
             DateTime dt = DatePicker.SelectedDate.Value + new TimeSpan(TimePicker.SelectedTime.Value.Hour,TimePicker.SelectedTime.Value.Minute,TimePicker.SelectedTime.Value.Second);
-
-
-
 
             var new_appointment = new Appointment
             {

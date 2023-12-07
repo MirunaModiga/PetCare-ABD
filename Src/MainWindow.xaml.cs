@@ -17,13 +17,15 @@ using System.Data;
 using System.Windows.Media.Animation;
 using System.Runtime.Remoting.Contexts;
 
-namespace testnou
+namespace myPetCare
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+        baza_PetCareDataContext context = new baza_PetCareDataContext();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -34,7 +36,6 @@ namespace testnou
             string username = txtUsername.Text;
             string pass = txtPassword.Password;
 
-            var context = new baza_PetCareDataContext();
             var useri = from user in context.Users select user;
             var flag = 0;
             foreach (var i in useri)
@@ -108,7 +109,6 @@ namespace testnou
                     return;
                 }
 
-            var context = new baza_PetCareDataContext();
             var users = from user in context.Users select user._Username;
             foreach (var i in users)
             {

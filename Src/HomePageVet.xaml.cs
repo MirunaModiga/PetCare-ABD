@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace testnou
+namespace myPetCare
 {
     /// <summary>
     /// Interaction logic for HomePageVet.xaml
@@ -64,7 +64,7 @@ namespace testnou
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            Application.Current.Shutdown();
         }
 
         private void SignOut_Click(object sender, RoutedEventArgs e)
@@ -109,6 +109,20 @@ namespace testnou
             {
                 MessageBox.Show("User not found or null");
             }
+        }
+
+        private void AboutUs_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            AboutUs info = new AboutUs(this.user);
+            info.Show();
+            this.Close();
+        }
+
+        private void ListView_Chat_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Chat chat = new Chat(this.user);
+            chat.Show();
+            this.Close();
         }
     }
 }

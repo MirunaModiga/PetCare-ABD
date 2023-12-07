@@ -7,14 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using testnou.Properties;
+using myPetCare.Properties;
 
-namespace testnou
+namespace myPetCare
 {
     public partial class MyPetsList : Form
     {
         string user;
         int userID = 0;
+        baza_PetCareDataContext context = new baza_PetCareDataContext();
 
         public MyPetsList(string user)
         {
@@ -23,7 +24,6 @@ namespace testnou
             label2.Text = "Welcome,\n"+user.ToString();
             userID = this.find_id();
 
-            var context = new baza_PetCareDataContext();
             var count = (from pet_obj in context.Pets
                         where pet_obj._OwnerID == userID
                         select pet_obj).Count();
@@ -38,7 +38,6 @@ namespace testnou
 
         private void populateItems()
         {
-            var context = new baza_PetCareDataContext();
             var pets = from pet_obj in context.Pets
                          where pet_obj._OwnerID == userID
                          select pet_obj;
@@ -77,7 +76,6 @@ namespace testnou
 
         private int find_id()
         {
-            var context = new baza_PetCareDataContext();
             int us = (from u in context.Users where u._Username == user select new { u.IDUser }).SingleOrDefault().IDUser;
             return us;
         }

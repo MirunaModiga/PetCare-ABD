@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:local="clr-namespace:testnou"
-        xmlns:b="http://schemas.microsoft.com/xaml/behaviors" x:Class="testnou.MainWindow"
+        xmlns:local="clr-namespace:myPetCare"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors" x:Class="myPetCare.MainWindow"
         mc:Ignorable="d"
         Title="Paws &amp; Claws" Height="498" Width="900" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent" Foreground="Black">
     <Window.Resources>

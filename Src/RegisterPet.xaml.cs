@@ -16,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Globalization;
 
-namespace testnou
+namespace myPetCare
 {
     /// <summary>
     /// Interaction logic for RegisterPet.xaml
@@ -28,6 +28,8 @@ namespace testnou
         public string petType { get; set; }
         public string photoPath { get; set; }
 
+        baza_PetCareDataContext context = new baza_PetCareDataContext();
+
         public RegisterPet(string user)
         {
             InitializeComponent();
@@ -37,7 +39,7 @@ namespace testnou
 
         private void CloseBtnPet_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            Application.Current.Shutdown();
         }
 
         private void txtPetName_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
@@ -173,8 +175,6 @@ namespace testnou
                 return;
             }
 
-            var context = new baza_PetCareDataContext();
-
             var new_pet = new Pet
             {
                 _petName = pet_name,
@@ -280,7 +280,6 @@ namespace testnou
 
         private int find_id()
         {
-            var context = new baza_PetCareDataContext();
             int us = (from u in context.Users where u._Username == user select new { u.IDUser }).SingleOrDefault().IDUser;
             return us;
         }
