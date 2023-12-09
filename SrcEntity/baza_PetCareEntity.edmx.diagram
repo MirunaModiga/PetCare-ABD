@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6fbce2393e03411f86692da749ec02ac" Name="Diagram1" ZoomLevel="40">
+        <EntityTypeShape EntityType="PetCareModel.Appointment" Width="1.5" PointX="5.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetCareModel.Health_Record" Width="1.5" PointX="8.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetCareModel.Medication" Width="1.5" PointX="5.25" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetCareModel.Message" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetCareModel.Pet" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetCareModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetCareModel.User" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <AssociationConnector Association="PetCareModel.FK_DoctorID1" ManuallyRouted="false" />
+        <AssociationConnector Association="PetCareModel.FK_PetID1" ManuallyRouted="false" />
+        <AssociationConnector Association="PetCareModel.FK_DoctorID2" ManuallyRouted="false" />
+        <AssociationConnector Association="PetCareModel.FK_PetID3" ManuallyRouted="false" />
+        <AssociationConnector Association="PetCareModel.FK_PetID2" ManuallyRouted="false" />
+        <AssociationConnector Association="PetCareModel.FK_ReceiverID" ManuallyRouted="false" />
+        <AssociationConnector Association="PetCareModel.FK_SenderID" ManuallyRouted="false" />
+        <AssociationConnector Association="PetCareModel.FK_OwnerID" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

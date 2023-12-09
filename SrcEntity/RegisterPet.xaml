@@ -1,0 +1,232 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:myPetCare"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="myPetCare.RegisterPet"
+        mc:Ignorable="d"
+        Title="RegisterPet" Height="498" Width="900" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent" Foreground="Black">
+    <Window.Resources>
+        <ImageBrush x:Key="CloseBtn_MouseOver" ImageSource="\images\icons8-shutdown-48.png"/>
+
+        <Style x:Key="Close_btn" TargetType="{x:Type Button}">
+
+            <Setter Property="Template">
+
+                <Setter.Value>
+
+                    <ControlTemplate TargetType="{x:Type Button}">
+
+                        <Border x:Name="button"
+                                BorderThickness="0"
+                                Background="{TemplateBinding Background}"
+                                SnapsToDevicePixels="True"/>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+
+                                <Setter Property="Background"
+                                        TargetName="button"
+                                        Value="{StaticResource CloseBtn_MouseOver}"/>
+
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+
+            </Setter>
+
+        </Style>
+
+        <Style x:Key="textHint" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Grid.Column" Value="1" />
+            <Setter Property="Panel.ZIndex" Value="1" />
+            <Setter Property="Margin" Value="10 0 0 0" />
+            <Setter Property="Foreground" Value="#ACB0AF" />
+        </Style>
+
+        <Style x:Key="textBox" TargetType="{x:Type Control}">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Grid.Column" Value="1" />
+            <Setter Property="Margin" Value="10 0 0 0" />
+            <Setter Property="Foreground" Value="#878787" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+
+    </Window.Resources>
+
+    <Grid Background="#FFEBF8FA">
+        <Rectangle HorizontalAlignment="Left" Height="498" VerticalAlignment="Center" Width="321">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/images/dog.jpg" Stretch="UniformToFill"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="70" Margin="820,418,0,0" VerticalAlignment="Top" Width="70">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/images/pet.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <Button x:Name="CloseBtnPet"
+                        Height="30"
+                        Width="30"
+                        BorderThickness="0"
+                        Style="{StaticResource Close_btn}" Click="CloseBtnPet_Click" Margin="860,10,10,458">
+
+            <Button.Background>
+
+                <ImageBrush ImageSource="\images\icons8-power-off-button-64.png"/>
+
+            </Button.Background>
+
+        </Button>
+        <TextBlock HorizontalAlignment="Left" Height="124" Margin="30,83,0,0" TextWrapping="Wrap" Text="Give us the basics about your little friend!" VerticalAlignment="Top" Width="252" FontFamily="Sitka Heading Semibold" FontSize="30" TextAlignment="Center" Foreground="#FFF0F1F8"/>
+        <Grid HorizontalAlignment="Left" Height="498" Margin="321,0,0,0" VerticalAlignment="Center" Width="579">
+            <StackPanel>
+                <Grid Height="50"/>
+                <Grid Height="80">
+                    <Separator HorizontalAlignment="Left" Margin="305,46,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                        <Separator.LayoutTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="90"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Separator.LayoutTransform>
+                        <Separator.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="-1" ScaleY="-1"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Separator.RenderTransform>
+                    </Separator>
+                    <Grid x:Name="uploadPhoto" Margin="290,0,0,0" Width="287">
+                        <TextBlock x:Name="UPLOAD" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="80" Width="170" LineHeight="16" FontFamily="Sitka Display Semibold" FontSize="20" Cursor="None" Foreground="#FF9497A7" Margin="107,0,0,0"><Run/><LineBreak/><Run Text="Upload a photo"/></TextBlock>
+                        <Button x:Name="UploadPhotoButton" Content="" HorizontalAlignment="Left" Height="40" Margin="52,17,0,0" VerticalAlignment="Top" Width="50" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="UploadPhotoButton_Clicked">
+                            <Button.Background>
+                                <ImageBrush ImageSource="/images/icons8-upload-photo.png" Stretch="Uniform"/>
+                            </Button.Background>
+                        </Button>
+                    </Grid>
+                    <Grid x:Name="name" Margin="0,0,294,0" Width="287">
+                        <TextBlock x:Name="NAME" HorizontalAlignment="Right" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Height="25" Width="217" LineHeight="16" FontFamily="Sitka Display Semibold" FontSize="20" Cursor="None" Foreground="#FF9497A7" Margin="0,15,0,0"/>
+                        <Border BorderBrush="#ACB0AF" BorderThickness="1" Margin="70,40,2,0" CornerRadius="5" Background="White">
+                            <Grid Margin="7 7">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock x:Name="petnameplace" MouseDown="textPetName_MouseDown" Text="Pet's name" Style="{StaticResource textHint}" Grid.ColumnSpan="2" FontSize="18" Margin="10,0,0,0" />
+                                <TextBox x:Name="petname" TextChanged="txtPetName_TextChanged" Style="{StaticResource textBox}" Grid.ColumnSpan="2" Background="{x:Null}" />
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Grid>
+                <Grid Height="100">
+                    <TextBlock x:Name="BREED" HorizontalAlignment="Right" TextWrapping="Wrap" Text="Breed" VerticalAlignment="Top" Height="25" Width="217" LineHeight="16" FontFamily="Sitka Display Semibold" FontSize="20" Cursor="None" Foreground="#FF9497A7" Margin="0,15,292,0"/>
+                    <Border BorderBrush="#ACB0AF" BorderThickness="1" Margin="70,40,294,20" CornerRadius="5" Background="White">
+                        <Grid Margin="7 7">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock x:Name="petnameplace1" MouseDown="textPetBreed_MouseDown" Text="Pet's breed" Style="{StaticResource textHint}" Grid.ColumnSpan="2" FontSize="18" Margin="10,0,0,0" />
+                            <TextBox x:Name="petname1" TextChanged="txtPetBreed_TextChanged" Style="{StaticResource textBox}" Grid.ColumnSpan="2" Background="{x:Null}" />
+                        </Grid>
+                    </Border>
+                    <TextBlock x:Name="BIRTHDATE" HorizontalAlignment="Right" TextWrapping="Wrap" Text="Birthday" VerticalAlignment="Top" Height="25" Width="217" LineHeight="16" FontFamily="Sitka Display Semibold" FontSize="20" Cursor="None" Foreground="#FF9497A7" Margin="0,15,33,0"/>
+                    <Border BorderBrush="#ACB0AF" BorderThickness="1" Margin="329,40,35,20" CornerRadius="5" Background="White">
+                        <Grid Margin="7 7">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock x:Name="petnameplace2" MouseDown="textPetBirth_MouseDown" Text="dd/MM/yyyy" Style="{StaticResource textHint}" Grid.ColumnSpan="2" FontSize="18" Margin="10,0,0,0" />
+                            <TextBox x:Name="petname2" TextChanged="txtPetBirth_TextChanged" Style="{StaticResource textBox}" Grid.ColumnSpan="2" Background="{x:Null}" />
+                        </Grid>
+                    </Border>
+                </Grid>
+                <Grid Height="100">
+                    <TextBlock x:Name="BREED_Copy" HorizontalAlignment="Right" TextWrapping="Wrap" Text="Gender" VerticalAlignment="Top" Height="25" Width="217" LineHeight="16" FontFamily="Sitka Display Semibold" FontSize="20" Cursor="None" Foreground="#FF9497A7" Margin="0,15,292,0"/>
+                    <RadioButton x:Name="Female" Content="Female" HorizontalAlignment="Left" Margin="70,50,0,0" VerticalAlignment="Top" Background="Black" BorderBrush="{x:Null}" Foreground="#FF4D6D6B" FontSize="16" FontFamily="Sitka Display Semibold" Width="70" Height="23"/>
+                    <RadioButton x:Name="Male" Content="Male" HorizontalAlignment="Left" Margin="165,50,0,0" VerticalAlignment="Top" Width="70" Height="23" FontSize="16" FontFamily="Sitka Display Semibold" Foreground="#FF4D6D6B" Background="Black" BorderBrush="{x:Null}"/>
+                    <TextBlock x:Name="BREED_Copy1" HorizontalAlignment="Right" TextWrapping="Wrap" Text="Color" VerticalAlignment="Top" Height="25" Width="217" LineHeight="16" FontFamily="Sitka Display Semibold" FontSize="20" Cursor="None" Foreground="#FF9497A7" Margin="0,15,31,0"/>
+                    <Border BorderBrush="#ACB0AF" BorderThickness="1" Margin="331,42,33,18" CornerRadius="5" Background="White">
+                        <Grid Margin="7 7">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock x:Name="petnameplace3" MouseDown="textPetColor_MouseDown" Text="Pet's color" Style="{StaticResource textHint}" Grid.ColumnSpan="2" FontSize="18" Margin="10,0,0,0" />
+                            <TextBox x:Name="petname3" TextChanged="txtPetColor_TextChanged" Style="{StaticResource textBox}" Grid.ColumnSpan="2" Background="{x:Null}" />
+                        </Grid>
+                    </Border>
+                </Grid>
+                <Grid Height="155">
+                    <TextBlock x:Name="BREED_Copy2" HorizontalAlignment="Right" TextWrapping="Wrap" Text="What type of pet do you have?" VerticalAlignment="Top" Height="25" Width="264" LineHeight="16" FontFamily="Sitka Display Semibold" FontSize="20" Cursor="None" Foreground="#FF9497A7" Margin="0,10,275,0"/>
+                    <Border BorderBrush="#ACB0AF" BorderThickness="1" Margin="33,44,216,23" CornerRadius="5" Background="White">
+                        <Grid Margin="0,0,0,-1">
+                            <Button x:Name="DogButton" HorizontalAlignment="Left" Height="63" VerticalAlignment="Top" Width="82" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="DogButton_Click">
+                                <Ellipse Height="50" Width="50" Margin="0,5,0,0">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="/images/doggy.png"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                            </Button>
+                            <Button x:Name="CatButton" HorizontalAlignment="Left" Margin="82,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.442,0.509" Width="88" Height="63" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="CatButton_Click">
+                                <Ellipse Height="49" Width="50">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="/images/cat.png" Stretch="Uniform"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                            </Button>
+                            <Button x:Name="BirdButton" HorizontalAlignment="Left" Margin="166,0,0,0" VerticalAlignment="Top" Width="82" Height="63" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="BirdButton_Click">
+                                <Ellipse Height="50" Width="50">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="/images/bird.jpg" Stretch="UniformToFill"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                            </Button>
+                            <Button x:Name="OtherButton" HorizontalAlignment="Left" Margin="246,0,0,0" VerticalAlignment="Top" Width="82" Height="63" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="OtherButton_Click">
+                                <Ellipse Height="50" Width="50">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="/images/other.jpg" Stretch="UniformToFill"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                            </Button>
+                            <Rectangle HorizontalAlignment="Left" Height="87" Margin="80,0,0,0" VerticalAlignment="Center" Width="5" Fill="#FFEEEEEE"/>
+                            <Rectangle HorizontalAlignment="Left" Height="87" Margin="164,0,0,0" VerticalAlignment="Center" Width="5" Fill="#FFEEEEEE"/>
+                            <Rectangle HorizontalAlignment="Left" Height="87" Margin="246,0,0,0" VerticalAlignment="Center" Width="5" Fill="#FFEEEEEE"/>
+                            <TextBlock x:Name="Dog_Copy1" HorizontalAlignment="Left" Margin="182,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Sitka Display Semibold" FontSize="16" TextAlignment="Center" Width="50" Foreground="#FF545871" Height="17" Text="Bird"/>
+                            <TextBlock x:Name="Dog_Copy2" HorizontalAlignment="Left" Margin="262,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Sitka Display Semibold" FontSize="16" TextAlignment="Center" Width="50" Foreground="#FF545871" Height="17" Text="Other"/>
+                        </Grid>
+                    </Border>
+                    <Button Content="Register my pet" Background="#FF545871" Margin="406,23,28,82" BorderBrush="#FF005A96" Height="50" Click="PETRegisterButton_Click" />
+                    <TextBlock x:Name="Dog" HorizontalAlignment="Left" Margin="50,107,0,0" TextWrapping="Wrap" Text="Dog" VerticalAlignment="Top" FontFamily="Sitka Display Semibold" FontSize="16" TextAlignment="Center" Width="50" Foreground="#FF545871"/>
+                    <TextBlock x:Name="Dog_Copy" HorizontalAlignment="Left" Margin="136,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Sitka Display Semibold" FontSize="16" TextAlignment="Center" Width="50" Foreground="#FF545871" Height="17"><Run Text="Cat"/><LineBreak/><Run/></TextBlock>
+                </Grid>
+            </StackPanel>
+        </Grid>
+        <materialDesign:Card Content="Card" HorizontalAlignment="Left" Margin="974,229,0,0" VerticalAlignment="Top"/>
+        <Button Content="" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="30" Height="30" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="Button_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/images/icons8-home-30.png"/>
+            </Button.Background>
+        </Button>
+    </Grid>
+</Window>

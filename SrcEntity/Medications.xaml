@@ -1,0 +1,107 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:myPetCare"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="myPetCare.Medications"
+        mc:Ignorable="d"
+        Title="Medications" Height="498" Width="900" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent" Foreground="Black">
+    <Window.Resources>
+        <ImageBrush x:Key="CloseBtn_MouseOver" ImageSource="\images\icons8-shutdown-48.png"/>
+
+        <Style x:Key="Close_btn" TargetType="{x:Type Button}">
+
+            <Setter Property="Template">
+
+                <Setter.Value>
+
+                    <ControlTemplate TargetType="{x:Type Button}">
+
+                        <Border x:Name="button"
+                                BorderThickness="0"
+                                Background="{TemplateBinding Background}"
+                                SnapsToDevicePixels="True"/>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+
+                                <Setter Property="Background"
+                                        TargetName="button"
+                                        Value="{StaticResource CloseBtn_MouseOver}"/>
+
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+
+            </Setter>
+
+        </Style>
+
+        <Style x:Key="textHint" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Grid.Column" Value="1" />
+            <Setter Property="Panel.ZIndex" Value="1" />
+            <Setter Property="Margin" Value="10 0 0 0" />
+            <Setter Property="Foreground" Value="#ACB0AF" />
+        </Style>
+
+        <Style x:Key="textBox" TargetType="{x:Type Control}">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Grid.Column" Value="1" />
+            <Setter Property="Margin" Value="10 0 0 0" />
+            <Setter Property="Foreground" Value="#878787" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+
+    </Window.Resources>
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/images/trackmed.jpg" Stretch="Fill"/>
+        </Grid.Background>
+        <Rectangle HorizontalAlignment="Left" Height="70" Margin="820,418,0,0" VerticalAlignment="Top" Width="70">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/images/pet.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Button x:Name="CloseBtnPet"
+                        Height="30"
+                        Width="30"
+                        BorderThickness="0"
+                        Style="{StaticResource Close_btn}" Click="CloseBtnPet_Click" Margin="860,10,10,458">
+
+            <Button.Background>
+
+                <ImageBrush ImageSource="\images\icons8-power-off-button-64.png"/>
+
+            </Button.Background>
+
+        </Button>
+        <Button Content="" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="30" Height="30" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="HomeButton_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/images/icons8-home-30.png"/>
+            </Button.Background>
+        </Button>
+        <Grid HorizontalAlignment="Left" Height="304" Margin="43,149,0,0" VerticalAlignment="Top" Width="320">
+            <TextBlock Height="82" TextWrapping="Wrap" Text="Keep track of your pet medication" Width="320" FontSize="30" TextAlignment="Center" FontFamily="Sitka Text Semibold" Foreground="#FF184364" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+            <TextBlock HorizontalAlignment="Center" Height="23" Margin="0,87,0,0" TextWrapping="Wrap" Text="Please choose your pet to see treatments" VerticalAlignment="Top" Width="320" TextAlignment="Center" FontSize="16" FontFamily="Sitka Subheading" Foreground="#FF245F8B"/>
+            <ComboBox x:Name="PetList" HorizontalAlignment="Center" Height="40" Margin="0,126,0,0" VerticalAlignment="Top" Width="238" FontFamily="Sitka Text Semibold" FontSize="20">
+                <TextBlock TextWrapping="Wrap" Text="TextBlock"/>
+            </ComboBox>
+            <Button Content="Track medication" Background="#FF255C86" Margin="41,210,41,44" BorderBrush="#FF005A96" FontFamily="Sitka Small Semibold" FontSize="20" Height="50" Click="TrackMedButton_Click" />
+            <Rectangle HorizontalAlignment="Left" Height="41" Margin="0,41,0,0" VerticalAlignment="Top" Width="43">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/images/icons8-pills-colormed.png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Grid>
+    </Grid>
+</Window>
